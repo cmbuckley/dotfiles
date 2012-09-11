@@ -1,77 +1,84 @@
-[alias]
-	# View the SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph
-	# View the current working tree status using the short format
-	s = status -s
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
-	# Clone a repository including all submodules
-	c = clone --recursive
-	# Commit all changes
-	ca = !git add -A && git commit -av
-	# Switch to a branch, creating it if necessary
-	go = checkout -B
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
-	# Undo a `git push`
-	undopush = push -f origin HEAD^:master
-
-[apply]
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
-
-[core]
-	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
-	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+[user]
+    name = Chris Buckley
+    email = chris@cmbuckley.co.uk
 
 [color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
-	ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
+
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+    meta = yellow
+    frag = magenta
+    old = red bold
+    new = blue bold
+
+[color "grep"]
+    match = red bold
+    filename = magenta
+
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[alias]
+    ap = add --patch
+    br = branch
+    ca = commit --amend
+    cb = !git rp HEAD
+    ci = commit
+    co = checkout
+    cp = cherry-pick
+    ct = !sh -c 'git checkout tkt-$1' -
+    di = diff --no-prefix
+    dc = diff --cached --no-prefix
+    dn = push origin HEAD
+    fo = fetch origin --prune
+    ls = ls-files
+    mr = !git status -s | grep 'orig$' | xargs -r -I {} rm -rf "{}"
+    mt = mergetool
+    ob = !test "`git cb`" != "HEAD"
+    pl = pull origin
+    rp = rev-parse --symbolic-full-name --abbrev-ref
+    rv = log HEAD --not @{u} --reverse -p
+    sd = !sh -c 'git stash drop stash@{${1-0}}' -
+    sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
+    si = submodule foreach git --no-pager diff
+    sl = stash list
+    sp = !sh -c 'git stash pop stash@{${1-0}}' -
+    ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
+    st = status
+    uk = !git status -s | grep -F '??' | cut -c4-
+    up = !git fo && git rebase -p $(git rp @{u})
+    ur = !git status -s | grep -F '??' | cut -c4- | xargs -I {} rm -rf "{}"
+
+[core]
+    editor = vim
+    pager = less -FRSX
+    whitespace = fix,tab-in-indent,tabwidth=4
+
+[diff]
+    renames = copy
+
+[diff "mwbdiff"]
+    textconv = mwbdump
+
+[apply]
+    whitespace = fix
+
 [merge]
+    tool = vimdiff
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
-
-# URL shorthands
-[url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
-[url "git://github.com/"]
-	insteadOf = "github:"
-[url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-	insteadOf = "gist:"
+[tig]
+    tab-size = 4
