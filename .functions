@@ -1,3 +1,39 @@
+# column
 c(){
     awk "{print \$$1}"
+}
+
+# custom git PS1
+__git_ps1_custom() {
+    __git_ps1 | gawk '
+    function color(col, str) {
+        if (str == "") { str = "&" }
+        return "\001\033[00;" col "m\002" str "\001\033[0m\002"
+    }
+    {
+        sub(/\*/,    color(32))
+        sub(/\+/,    color(33))
+        sub(/%/,     color(36))
+        sub(/<|<?>/, color(31))
+        sub(/=\)/,   ")")
+
+        print gensub(/\(\(([^)]+)\)/, "(" color(31, "\\1"), "g")
+    }'
+}
+
+# get an RFC on the command line
+rfc() {
+    OUT=`curl -s -w "%{http_code}\\n" "http://tools.ietf.org/rfc/rfc$1.txt"`
+    if [ "200" -eq `echo "$OUT" | tail -1` ]; then
+        echo "$OUT" | head -n -1 | grep -v  | less
+    else
+        echo "Could not find RFC $1"
+    fi
+}
+
+# highlight STDERR
+function ce() {
+    # We need to wrap each phrase of the command in quotes to preserve arguments that contain whitespace
+    # Execute the command, swap STDOUT and STDERR, colour STDOUT, swap back
+    ((eval $(for phrase in "$@"; do echo -n "'$phrase' "; done)) 3>&1 1>&2 2>&3 | sed -e "s/^\(.*\)$/$(echo -en \\033)[31;1m\1$(echo -en \\033)[0m/") 3>&1 1>&2 2>&3
 }

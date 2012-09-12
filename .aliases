@@ -16,3 +16,9 @@ alias ls="command ls ${colorflag}"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
+
+# typos
+alias gti='git'
+alias gut='git'
+alias got='git'
+alias vom='vim'
