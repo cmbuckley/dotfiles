@@ -35,21 +35,28 @@ else
 	RESET="\033[m"
 fi
 
-export MAGENTA
-export ORANGE
-export GREEN
-export PURPLE
-export WHITE
-export BOLD
-export RESET
+# custom git PS1
+__git_ps1_custom() {
+    __git_ps1 | gawk '
+    function color(col, str) {
+        if (str == "") { str = "&" }
+        return "\001\033[00;" col "m\002" str "\001\033[0m\002"
+    }
+    {
+        sub(/\*/,    color(32))
+        sub(/\+/,    color(33))
+        sub(/%/,     color(36))
+        sub(/<|<?>/, color(31))
+        sub(/=\)/,   ")")
 
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+        print gensub(/\(\(([^)]+)\)/, "(" color(31, "\\1"), "g")
+    }'
 }
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
+# git PS1
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=1
+export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[G\]\u@\h:\w\$(__git_ps1_custom)\$ "
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"

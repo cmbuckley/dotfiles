@@ -3,24 +3,6 @@ c(){
     awk "{print \$$1}"
 }
 
-# custom git PS1
-__git_ps1_custom() {
-    __git_ps1 | gawk '
-    function color(col, str) {
-        if (str == "") { str = "&" }
-        return "\001\033[00;" col "m\002" str "\001\033[0m\002"
-    }
-    {
-        sub(/\*/,    color(32))
-        sub(/\+/,    color(33))
-        sub(/%/,     color(36))
-        sub(/<|<?>/, color(31))
-        sub(/=\)/,   ")")
-
-        print gensub(/\(\(([^)]+)\)/, "(" color(31, "\\1"), "g")
-    }'
-}
-
 # get an RFC on the command line
 rfc() {
     OUT=`curl -s -w "%{http_code}\\n" "http://tools.ietf.org/rfc/rfc$1.txt"`
