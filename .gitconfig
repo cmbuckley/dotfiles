@@ -38,21 +38,20 @@
     ci = commit
     co = checkout
     cp = cherry-pick
-    ct = !sh -c 'git checkout tkt-$1' -
     di = diff --no-prefix
     dc = diff --cached --no-prefix
-    dn = push origin HEAD
+    dn = push -u origin HEAD
     fo = fetch origin --prune
     ls = ls-files
     mr = !git status -s | grep 'orig$' | xargs -r -I {} rm -rf "{}"
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
+    rh = !git reset --hard $(git rp @{u})
     rp = rev-parse --symbolic-full-name --abbrev-ref
     rv = log HEAD --not @{u} --reverse -p
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
     sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
-    si = submodule foreach git --no-pager diff
     sl = stash list
     sp = !sh -c 'git stash pop stash@{${1-0}}' -
     ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
@@ -77,8 +76,8 @@
 
 [merge]
     tool = vimdiff
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 
 [tig]
     tab-size = 4

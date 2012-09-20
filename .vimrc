@@ -26,9 +26,15 @@
 set number
 " Enable syntax highlighting
 syntax on
+" Unix line endings
+set fileformat=unix
 " Make tabs as wide as 4 spaces
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
+set smartindent
+set autoindent
 " Show “invisible” characters
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "set list
@@ -60,3 +66,27 @@ set scrolloff=7
 set nobackup
 set nowb
 set noswapfile
+
+" Commands
+command Wq  wq
+command Wqa wqa
+command WQa wqa
+command W   w
+command Q   q
+command Qa  qa
+command Vsp vsp
+
+" Save actions
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/^M$//e
+
+" Plugins
+"call pathogen#infect()
+"call pathogen#helptags()
+
+"map <space> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+":autocmd FileType php nnoremap <C-L> :!php -l %<CR>
+":autocmd FileType php inoremap <C-L> <ESC>:!php -l %<CR>i
+":autocmd FileType php inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+":autocmd FileType php nnoremap <C-P> :call PhpDocSingle()<CR>
+":autocmd FileType php vnoremap <C-P> :call PhpDocRange()<CR>
