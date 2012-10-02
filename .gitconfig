@@ -47,7 +47,7 @@
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
-    rh = !git reset --hard $(git rp @{u})
+    rh = !git reset --hard @{u}
     rp = rev-parse --symbolic-full-name --abbrev-ref
     rv = log HEAD --not @{u} --reverse -p
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
@@ -57,7 +57,7 @@
     ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
     st = status
     uk = !git status -s | grep -F '??' | cut -c4-
-    up = !git fo && git rebase -p $(git rp @{u})
+    up = !git fo && git rebase -p @{u}
     ur = !git status -s | grep -F '??' | cut -c4- | xargs -I {} rm -rf "{}"
 
 [core]
