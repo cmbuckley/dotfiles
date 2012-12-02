@@ -49,6 +49,6 @@ __git_ps1_custom() {
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=1
-export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[G\]\u@\h:\w\$(__git_ps1_custom)\$ "
+export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(__git_ps1_custom)\$ "
 
 export PS2="\[$ORANGE\]→ \[$RESET\]"

@@ -63,7 +63,7 @@
 [core]
     editor = vim
     pager = less -FRSX
-    whitespace = fix,tab-in-indent,tabwidth=4
+    #whitespace = fix,tab-in-indent,tabwidth=4
 
 [diff]
     renames = copy
@@ -72,7 +72,7 @@
     textconv = mwbdump
 
 [apply]
-    whitespace = fix
+    #whitespace = fix
 
 [merge]
     tool = vimdiff
