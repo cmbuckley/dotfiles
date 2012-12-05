@@ -81,3 +81,8 @@
 
 [tig]
     tab-size = 4
+
+[bash]
+    #showDirtyState should be false on large repositories
+    showDirtyState = true
+    showUpstream = true
