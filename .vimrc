@@ -24,10 +24,16 @@
 "set secure
 " Enable line numbers
 set number
-" Enable syntax highlighting
-syntax on
+
+if &diff
+    syntax off
+else
+    " Enable syntax highlighting
+    syntax on
+endif
+
 " Unix line endings
-set fileformat=unix
+"set fileformats=unix
 " Make tabs as wide as 4 spaces
 set tabstop=4
 set shiftwidth=4
@@ -66,8 +72,10 @@ set scrolloff=7
 set nobackup
 set nowb
 set noswapfile
+set autoread
 
 " Commands
+command Sw  :execute ':silent w !sudo tee % > /dev/null' | :edit!
 command Wq  wq
 command Wqa wqa
 command WQa wqa
@@ -76,9 +84,12 @@ command Q   q
 command Qa  qa
 command Vsp vsp
 
-" Save actions
-autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePre * :%s/^M$//e
+if !&diff
+    " Save actions
+    autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufWritePre * :%s/\r//e
+    "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
+endif
 
 " Plugins
 "call pathogen#infect()
