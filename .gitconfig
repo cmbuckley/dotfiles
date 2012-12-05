@@ -2,6 +2,45 @@
     name = Chris Buckley
     email = chris@cmbuckley.co.uk
 
+[alias]
+    ap = add --patch
+    br = branch
+    ca = commit --amend
+    cb = !git rp HEAD
+    ci = commit
+    co = checkout
+    cp = cherry-pick
+    di = diff --no-prefix
+    dc = diff --cached --no-prefix
+    dn = push -u origin HEAD
+    fo = fetch origin --prune
+    ls = ls-files
+    mr = !git uk | grep '\\.orig$' | xargs -r -I {} rm -rf "{}"
+    mt = mergetool
+    ob = !test "`git cb`" != "HEAD"
+    pl = pull origin
+    rh = !git reset --hard @{u}
+    rp = rev-parse --symbolic-full-name --abbrev-ref
+    rt = rev-parse --show-toplevel
+    rv = log HEAD --not @{u} --reverse -p
+    sd = !sh -c 'git stash drop stash@{${1-0}}' -
+    sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
+    sl = stash list
+    sp = !sh -c 'git stash pop stash@{${1-0}}' -
+    ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
+    st = status
+    uk = !git status -s | grep -F '??' | cut -c4-
+    up = !git fo && git rebase -p @{u}
+    ur = !git status -s | grep -F '??' | cut -c4- | xargs -I {} rm -rf "{}"
+
+[apply]
+    #whitespace = fix
+
+[bash]
+    #showDirtyState should be false on large repositories
+    showDirtyState = true
+    showUpstream = true
+
 [color]
     diff = auto
     status = auto
@@ -24,41 +63,12 @@
 [color "grep"]
     match = red bold
     filename = magenta
+    linenumber = green
 
 [color "status"]
     added = yellow
     changed = green
     untracked = cyan
-
-[alias]
-    ap = add --patch
-    br = branch
-    ca = commit --amend
-    cb = !git rp HEAD
-    ci = commit
-    co = checkout
-    cp = cherry-pick
-    di = diff --no-prefix
-    dc = diff --cached --no-prefix
-    dn = push -u origin HEAD
-    fo = fetch origin --prune
-    ls = ls-files
-    mr = !git status -s | grep 'orig$' | xargs -r -I {} rm -rf "{}"
-    mt = mergetool
-    ob = !test "`git cb`" != "HEAD"
-    pl = pull origin
-    rh = !git reset --hard @{u}
-    rp = rev-parse --symbolic-full-name --abbrev-ref
-    rv = log HEAD --not @{u} --reverse -p
-    sd = !sh -c 'git stash drop stash@{${1-0}}' -
-    sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
-    sl = stash list
-    sp = !sh -c 'git stash pop stash@{${1-0}}' -
-    ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
-    st = status
-    uk = !git status -s | grep -F '??' | cut -c4-
-    up = !git fo && git rebase -p @{u}
-    ur = !git status -s | grep -F '??' | cut -c4- | xargs -I {} rm -rf "{}"
 
 [core]
     editor = vim
@@ -71,18 +81,16 @@
 [diff "mwbdiff"]
     textconv = mwbdump
 
-[apply]
-    #whitespace = fix
-
 [merge]
     tool = vimdiff
     # Include summaries of merged commits in newly created merge commit messages
     log = true
 
+[pager]
+    status = true
+
+[push]
+    default = upstream
+
 [tig]
     tab-size = 4
-
-[bash]
-    #showDirtyState should be false on large repositories
-    showDirtyState = true
-    showUpstream = true
