@@ -69,6 +69,7 @@
     added = yellow
     changed = green
     untracked = cyan
+    nobranch = red
 
 [core]
     editor = vim
