@@ -92,7 +92,8 @@ if !&diff
 endif
 
 " Plugins
-"call pathogen#infect()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 "call pathogen#helptags()
 
 "map <space> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
