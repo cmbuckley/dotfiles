@@ -41,9 +41,11 @@ set softtabstop=4
 set expandtab
 set smartindent
 set autoindent
+
 " Show “invisible” characters
-"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "set list
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+
 " Ignore case of searches
 set ignorecase
 " Except if mixed case is used
