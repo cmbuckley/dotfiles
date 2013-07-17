@@ -32,6 +32,16 @@ else
     syntax on
 endif
 
+" Navigate between soft lines
+map <silent> <Up> gk
+imap <silent> <Up> <C-o>gk
+map <silent> <Down> gj
+imap <silent> <Down> <C-o>gj
+map <silent> <home> g<home>
+imap <silent> <home> <C-o>g<home>
+map <silent> <End> g<End>
+imap <silent> <End> <C-o>g<End>
+
 " Unix line endings
 "set fileformats=unix
 " Make tabs as wide as 4 spaces
@@ -86,7 +96,8 @@ command Q   q
 command Qa  qa
 command Vsp vsp
 
-if !&diff
+if &diff
+else
     " Save actions
     autocmd BufWritePre * :%s/\s\+$//e
     autocmd BufWritePre * :%s/\r//e
