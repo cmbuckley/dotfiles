@@ -5,6 +5,10 @@ c(){
     awk "{print \$$1}"
 }
 
+di(){
+    colordiff -u "$@" | pager
+}
+
 # get an RFC on the command line
 rfc() {
     OUT=`curl -s -w "%{http_code}\\n" "http://tools.ietf.org/rfc/rfc$1.txt"`
