@@ -3,23 +3,31 @@
 UNTRACKED=$(git config --get-color color.status.untracked)
 CHANGED=$(git config --get-color color.status.changed)
 ADDED=$(git config --get-color color.status.added)
+BRANCH=$(git config --get-color color.status.branch)
 NOBRANCH=$(git config --get-color color.status.nobranch)
 UPSTREAM=$NOBRANCH
 
+# @todo color branch
 
 # custom git PS1
 __git_ps1_custom() {
-    __git_ps1 | gawk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v nobranch=$NOBRANCH '
+    __git_ps1 | gawk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v branch=$BRANCH -v nobranch=$NOBRANCH '
     function color(col, str) {
         if (str == "") { str = "&" }
         return "\001" col "\002" str "\001\033[0m\002"
     }
     {
         sub(/%/,     color(untracked))
+        sub(/#/,     color(nobranch))
         sub(/\*/,    color(changed))
-        sub(/\+/,    color(added))
+        sub(/\B\+/,  color(added))
         sub(/<|<?>/, color(upstream))
-        sub(/=\)/,   ")")
+
+        if ($1 ~ /[(<=>)]/) {
+            sub(/=\)/, ")")
+        } else {
+            sub(/\)/, color(nobranch, "^") ")")
+        }
 
         print gensub(/\(\(([^)]+)\)/, "(" color(nobranch, "\\1"), "g")
     }'

@@ -15,6 +15,13 @@ rfc() {
     fi
 }
 
+git() {
+    case $1 in
+        rt ) command cd $(git rev-parse --show-toplevel) ;;
+        *  ) command git "$@" ;;
+    esac
+}
+
 # highlight STDERR
 function ce() {
     # We need to wrap each phrase of the command in quotes to preserve arguments that contain whitespace

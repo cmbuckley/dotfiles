@@ -13,15 +13,20 @@
     di = diff --no-prefix
     dc = diff --cached --no-prefix
     dn = push -u origin HEAD
+    du = diff --no-prefix @{u}
     fo = fetch origin --prune
     ls = ls-files
+    ma = merge --abort
     mr = !git uk | grep '\\.orig$' | xargs -r -I {} rm -rf "{}"
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
-    rh = !git reset --hard @{u}
+    ra = rebase --abort
+    rc = rebase --continue
+    rh = !sh -c 'git reset --hard ${1-@{u\\}}' -
+    ri = rebase --interactive
     rp = rev-parse --symbolic-full-name --abbrev-ref
-    rt = rev-parse --show-toplevel
+    rs = rebase --skip
     rv = log HEAD --not @{u} --reverse -p
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
     sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
@@ -29,9 +34,9 @@
     sp = !sh -c 'git stash pop stash@{${1-0}}' -
     ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
     st = status
-    uk = !git status -s | grep -F '??' | cut -c4-
+    uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
     up = !git fo && git rebase -p @{u}
-    ur = !git status -s | grep -F '??' | cut -c4- | xargs -I {} rm -rf "{}"
+    ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf "{}"' -
 
 [apply]
     #whitespace = fix
@@ -84,8 +89,6 @@
 
 [merge]
     tool = vimdiff
-    # Include summaries of merged commits in newly created merge commit messages
-    log = true
 
 [pager]
     status = true
