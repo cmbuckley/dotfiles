@@ -23,7 +23,7 @@ __git_ps1_custom() {
         sub(/\B\+/,  color(added))
         sub(/<|<?>/, color(upstream))
 
-        if ($1 ~ /[(<=>)]/) {
+        if ($0 ~ /([<=>]|\(\()/) {
             sub(/=\)/, ")")
         } else {
             sub(/\)/, color(nobranch, "^") ")")
