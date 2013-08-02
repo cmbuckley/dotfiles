@@ -1,3 +1,8 @@
+" Plugins
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
+"call pathogen#helptags()
+
 " Make Vim more useful
 "set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -104,10 +109,6 @@ else
     "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
 endif
 
-" Plugins
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-"call pathogen#helptags()
 
 "map <space> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 ":autocmd FileType php nnoremap <C-L> :!php -l %<CR>

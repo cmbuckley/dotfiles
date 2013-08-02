@@ -2,7 +2,9 @@
 
 # column
 c(){
-    awk "{print \$$1}"
+    COL=$1
+    shift
+    awk -e "{print \$$COL}" $@
 }
 
 di(){
