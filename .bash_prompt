@@ -7,6 +7,10 @@ BRANCH=$(git config --get-color color.status.branch)
 NOBRANCH=$(git config --get-color color.status.nobranch)
 UPSTREAM=$NOBRANCH
 
+if [ "$(git config --bool bash.showUpstream)" == "false" ]; then
+    UPSTREAM=
+fi
+
 # @todo color branch
 
 # custom git PS1
@@ -23,9 +27,9 @@ __git_ps1_custom() {
         sub(/\B\+/,  color(added))
         sub(/<|<?>/, color(upstream))
 
-        if ($0 ~ /([<=>]|\(\()/) {
+        if ($0 ~ /([<|=>]|\(\()/) {
             sub(/=\)/, ")")
-        } else {
+        } else if (upstream != "") {
             sub(/\)/, color(nobranch, "^") ")")
         }
 
