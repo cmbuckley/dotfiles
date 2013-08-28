@@ -4,7 +4,7 @@
 c(){
     COL=$1
     shift
-    awk -e "{print \$$COL}" $@
+    awk --source "{print \$$COL}" $@
 }
 
 di(){
