@@ -98,3 +98,4 @@
 
 [tig]
     tab-size = 4
+    commit-order = topo
