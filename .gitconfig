@@ -6,7 +6,7 @@
     ap = add --patch
     br = branch
     ca = commit --amend
-    cb = !git rp HEAD
+    cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
     ci = commit
     co = checkout
     cp = cherry-pick
@@ -17,7 +17,7 @@
     fo = fetch origin --prune
     ls = ls-files
     ma = merge --abort
-    mr = !git uk | grep '\\.orig$' | xargs -r -I {} rm -rf "{}"
+    mr = merge --no-ff
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
@@ -35,7 +35,7 @@
     ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
     st = status
     uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
-    up = !git fo && git rebase -p @{u}
+    up = !git fetch origin --prune && git rebase -p @{u}
     ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf "{}"' -
 
 [apply]
