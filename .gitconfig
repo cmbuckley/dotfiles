@@ -15,6 +15,7 @@
     dn = push -u origin HEAD
     du = diff --no-prefix @{u}
     fo = fetch origin --prune
+    lp = log -p
     ls = ls-files
     ma = merge --abort
     mr = merge --no-ff
@@ -89,6 +90,9 @@
 
 [merge]
     tool = vimdiff
+
+[mergetool]
+	keepBackup = false
 
 [pager]
     status = true
