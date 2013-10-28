@@ -4,6 +4,7 @@
 
 [alias]
     ap = add --patch
+    bm = branch --merged
     br = branch
     ca = commit --amend
     cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
@@ -18,7 +19,7 @@
     lp = log -p
     ls = ls-files
     ma = merge --abort
-    mr = merge --no-ff
+    mr = merge --no-ff --no-edit
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
@@ -26,7 +27,9 @@
     rc = rebase --continue
     rh = !sh -c 'git reset --hard ${1-@{u\\}}' -
     ri = rebase --interactive
-    rp = rev-parse --symbolic-full-name --abbrev-ref
+    rl = reflog
+    rp = !sh -c 'git rev-parse ${1-HEAD}' -
+    rr = rev-parse --symbolic-full-name --abbrev-ref
     rs = rebase --skip
     rv = log HEAD --not @{u} --reverse -p
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
