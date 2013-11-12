@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
-
 # default language
 export LANG="en_GB.UTF-8"
 
