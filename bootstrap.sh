@@ -8,7 +8,7 @@ function setup() {
     CWD="$(pwd -P)"
 
     for FILE in $(git ls-tree HEAD | awk '$4~/^\./{print $4}'); do
-        rm -f "$HOME/$FILE"
+        rm -rf "$HOME/$FILE"
         ln -s "$CWD/$FILE" "$HOME"
     done
 }
