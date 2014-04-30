@@ -7,7 +7,8 @@ PRG="$(basename "$0")"
 function setup() {
     CWD="$(pwd -P)"
 
-    for FILE in $(git ls-tree HEAD | awk '$4~/^\./{print $4}'); do
+
+    for FILE in $(git ls-tree HEAD | awk '$4~/^\.?[^\.]*$/{print $4}'); do
         rm -rf "$HOME/$FILE"
         ln -s "$CWD/$FILE" "$HOME"
     done
@@ -21,8 +22,9 @@ git pull || exit $?
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     setup
 else
-    read -p "This may overwrite existing files in your home directory. Are you sure? [y/N] " -n 1
+    read -p "This WILL overwrite existing files in your home directory. Are you sure? [y/N] " -n 1
     echo
+
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         setup
     fi
