@@ -8,7 +8,7 @@ c(){
 }
 
 di(){
-    colordiff -u "$@" | pager
+    colordiff -u "$@" | less -FSX
 }
 
 # get an RFC on the command line
