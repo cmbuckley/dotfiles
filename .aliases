@@ -19,6 +19,9 @@ alias ls="command ls ${colorflag}"
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
+# horizontal rule
+alias hr='printf —%.0s $(seq $COLUMNS)'
+
 # Typos
 alias gti='git'
 alias gut='git'
