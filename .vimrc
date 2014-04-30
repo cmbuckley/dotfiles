@@ -9,6 +9,8 @@ call pathogen#infect()
 "set clipboard=unnamed
 " Enhance command-line completion
 "set wildmenu
+" Case-insensitive autocomplete
+set wildignorecase
 " Allow cursor keys in insert mode
 "set esckeys
 " Allow backspace in insert mode
@@ -48,7 +50,7 @@ map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
 
 " Unix line endings
-"set fileformats=unix
+set fileformats=unix
 " Make tabs as wide as 4 spaces
 set tabstop=4
 set shiftwidth=4
