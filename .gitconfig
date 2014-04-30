@@ -11,15 +11,16 @@
     ci = commit
     co = checkout
     cp = cherry-pick
-    di = diff --no-prefix
-    dc = diff --cached --no-prefix
+    di = diff
+    dc = diff --cached
     dn = push -u origin HEAD
-    du = diff --no-prefix @{u}
+    du = diff @{u} HEAD
     fo = fetch origin --prune
     lp = log -p
     ls = ls-files
     ma = merge --abort
-    mr = merge --no-ff --no-edit
+    mb = merge-base
+    mr = merge --no-ff
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
     pl = pull origin
@@ -33,11 +34,12 @@
     rs = rebase --skip
     rv = log HEAD --not @{u} --reverse -p
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
-    sf = !sh -c 'git stash -q && git diff stash@{0}^! ${@:-.} | git apply && git stash && git stash pop -q stash@{1} && git checkout ${@:-.}' -
     sl = stash list
     sp = !sh -c 'git stash pop stash@{${1-0}}' -
     ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
     st = status
+    td = !sh -c 'git tag -d $1 && git push origin :refs/tags/$1' -
+    tl = tag -l
     uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
     up = !git fetch origin --prune && git rebase -p @{u}
     ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf "{}"' -
@@ -87,6 +89,7 @@
 
 [diff]
     renames = copy
+    noprefix = true
 
 [diff "mwbdiff"]
     textconv = mwbdump

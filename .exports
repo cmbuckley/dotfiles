@@ -34,3 +34,6 @@ export HISTTIMEFORMAT="%F %T "
 
 # Make some commands not show up in history
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date"
+
+# Hide editor on git merges
+export GIT_MERGE_AUTOEDIT="no"

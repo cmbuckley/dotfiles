@@ -24,6 +24,7 @@ rfc() {
 git() {
     case $1 in
         rt ) command cd $(git rev-parse --show-toplevel) ;;
+        apply ) shift ; command git apply -p0 "$@" ;;
         *  ) command git "$@" ;;
     esac
 }
