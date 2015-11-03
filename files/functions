@@ -37,5 +37,5 @@ function ce() {
 }
 
 g() {
-    git grep "${ARGS[@]}"
+    git grep "$@"
 }

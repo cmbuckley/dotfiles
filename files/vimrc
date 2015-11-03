@@ -111,10 +111,8 @@ else
     "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
 endif
 
+" Makefiles must use tabs
+autocmd FileType make setlocal noexpandtab
 
-"map <space> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
-":autocmd FileType php nnoremap <C-L> :!php -l %<CR>
-":autocmd FileType php inoremap <C-L> <ESC>:!php -l %<CR>i
-":autocmd FileType php inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
-":autocmd FileType php nnoremap <C-P> :call PhpDocSingle()<CR>
-":autocmd FileType php vnoremap <C-P> :call PhpDocRange()<CR>
+" Indent yaml files 2 spaces
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2

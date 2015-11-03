@@ -7,6 +7,8 @@ else # OS X `ls`
     colorflag="-G"
 fi
 
+alias ls="ls ${colorflag}"
+
 # List all files colorized in long format
 alias ll="ls -l ${colorflag}"
 
@@ -14,7 +16,8 @@ alias ll="ls -l ${colorflag}"
 alias la="ls -la ${colorflag}"
 
 # Always use color output for `ls`
-alias ls="command ls ${colorflag}"
+# Disabled due to problems with command & sudo
+#alias ls="command ls ${colorflag}"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

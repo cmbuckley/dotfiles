@@ -12,6 +12,7 @@ if [ "$(git config --bool bash.showUpstream)" == "false" ]; then
 fi
 
 # @todo color branch
+# @todo sort upstream config and only if there is a remote
 
 # custom git PS1
 __git_ps1_custom() {

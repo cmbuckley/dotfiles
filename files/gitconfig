@@ -4,6 +4,7 @@
 
 [alias]
     ap = add --patch
+    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply --cached --ignore-whitespace'
     bm = branch --merged
     br = branch
     ca = commit --amend
@@ -16,6 +17,7 @@
     dn = push -u origin HEAD
     du = diff @{u} HEAD
     fo = fetch origin --prune
+    in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
     lp = log -p
     ls = ls-files
     ma = merge --abort
@@ -92,7 +94,7 @@
     noprefix = true
 
 [diff "mwbdiff"]
-    textconv = mwbdump
+    #textconv = mwbdump
 
 [merge]
     tool = vimdiff

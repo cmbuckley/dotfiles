@@ -1,2 +1,5 @@
 # Disable the startup message
 startup_message off
+
+# Scroll wheel
+termcapinfo xterm* ti@:te@
