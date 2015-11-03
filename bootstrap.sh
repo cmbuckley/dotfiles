@@ -7,10 +7,8 @@ PRG="$(basename "$0")"
 function setup() {
     CWD="$(pwd -P)"
 
-
-    for FILE in $(git ls-tree HEAD | awk '$4~/^\.?[^\.]*$/{print $4}'); do
-        rm -rf "$HOME/$FILE"
-        ln -s "$CWD/$FILE" "$HOME"
+    for FILE in $(find "$CWD/files" -mindepth 1 -maxdepth 1); do
+        ln -nfs "$FILE" "$HOME/.${FILE##*/}"
     done
 }
 

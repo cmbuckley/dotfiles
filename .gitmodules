@@ -1,9 +1,9 @@
-[submodule ".vim/bundle/vim-pathogen"]
-	path = .vim/bundle/vim-pathogen
+[submodule "files/vim/bundle/vim-pathogen"]
+	path = files/vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/dwm.vim"]
-	path = .vim/bundle/dwm.vim
+[submodule "files/vim/bundle/dwm.vim"]
+	path = files/vim/bundle/dwm.vim
 	url = https://github.com/spolu/dwm.vim
-[submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+[submodule "files/vim/bundle/vim-fugitive"]
+	path = files/vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
