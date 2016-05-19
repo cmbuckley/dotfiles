@@ -8,7 +8,10 @@ function setup() {
     CWD="$(pwd -P)"
 
     for FILE in $(find "$CWD/files" -mindepth 1 -maxdepth 1); do
-        ln -nfs "$FILE" "$HOME/.${FILE##*/}"
+        TARGET="$HOME/.${FILE##*/}"
+
+        [ -e "$TARGET" -a ! -h "$TARGET" ] && mv "$TARGET" "$TARGET.bak"
+        ln -nfs "$FILE" "$TARGET"
     done
 }
 
