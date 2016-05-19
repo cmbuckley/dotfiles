@@ -47,5 +47,8 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # show '<'/'>' for HEAD/upstream diffs. bash.showUpstream needs this
 export GIT_PS1_SHOWUPSTREAM=1
 
-export PS1="\[\033[m\]\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(__git_ps1_custom)\$ "
+if type __git_ps1 2>/dev/null; then
+    export PS1="\[\033[m\]\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(__git_ps1_custom)\$ "
+fi
+
 export PS2="\[\033[0;31m\]→ \[\033[m\]"
