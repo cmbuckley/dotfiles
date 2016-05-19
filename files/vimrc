@@ -10,7 +10,9 @@ call pathogen#infect()
 " Enhance command-line completion
 "set wildmenu
 " Case-insensitive autocomplete
-set wildignorecase
+if v:version > 703
+    set wildignorecase
+endif
 " Allow cursor keys in insert mode
 "set esckeys
 " Allow backspace in insert mode
