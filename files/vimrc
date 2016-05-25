@@ -41,6 +41,10 @@ else
     syntax on
 endif
 
+" Color scheme
+set background=dark
+colorscheme solarized
+
 " Navigate between soft lines
 map <silent> <Up> gk
 imap <silent> <Up> <C-o>gk
