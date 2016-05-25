@@ -18,6 +18,7 @@ function setup() {
 # update repo
 cd "$(dirname "$0")"
 git pull || exit $?
+git submodule update || exit $?
 
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
