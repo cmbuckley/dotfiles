@@ -16,7 +16,7 @@
     dc = diff --cached
     dn = push -u origin HEAD
     du = diff @{u} HEAD
-    fo = fetch origin --prune
+    fo = fetch --prune
     in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
     lp = log -p
     ls = ls-files
@@ -25,7 +25,8 @@
     mr = merge --no-ff
     mt = mergetool
     ob = !test "`git cb`" != "HEAD"
-    pl = pull origin
+    pl = pull
+    pr = !sh -c 'git fetch ${2-origin} pull/$1/head:pr/$1 && git checkout pr/$1' -
     ra = rebase --abort
     rc = rebase --continue
     rh = !sh -c 'git reset --hard ${1-@{u\\}}' -
@@ -43,7 +44,7 @@
     td = !sh -c 'git tag -d $1 && git push origin :refs/tags/$1' -
     tl = tag -l
     uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
-    up = !git fetch origin --prune && git rebase -p @{u}
+    up = !git fetch --prune && git rebase -p @{u}
     ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf "{}"' -
 
 [apply]
