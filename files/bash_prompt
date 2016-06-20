@@ -16,7 +16,7 @@ fi
 
 # custom git PS1
 __git_ps1_custom() {
-    __git_ps1 | gawk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v branch=$BRANCH -v nobranch=$NOBRANCH '
+    type __git_ps1 >/dev/null 2>&1 && __git_ps1 | gawk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v branch=$BRANCH -v nobranch=$NOBRANCH '
     function color(col, str) {
         if (str == "") { str = "&" }
         return "\001" col "\002" str "\001\033[0m\002"
@@ -47,8 +47,6 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # show '<'/'>' for HEAD/upstream diffs. bash.showUpstream needs this
 export GIT_PS1_SHOWUPSTREAM=1
 
-if type __git_ps1 2>/dev/null; then
-    export PS1="\[\033[m\]\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(__git_ps1_custom)\$ "
-fi
+export PS1="\[\033[m\]\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(__git_ps1_custom)\$ "
 
 export PS2="\[\033[0;31m\]→ \[\033[m\]"
