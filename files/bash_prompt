@@ -11,6 +11,11 @@ if [ "$(git config --bool bash.showUpstream)" == "false" ]; then
     UPSTREAM=
 fi
 
+if [ -e "/Library/Developer/CommandLineTools" ]; then
+    source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
+    source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
+fi
+
 # @todo color branch
 # @todo sort upstream config and only if there is a remote
 
