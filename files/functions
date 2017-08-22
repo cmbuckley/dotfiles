@@ -8,7 +8,7 @@ c(){
 }
 
 di(){
-    colordiff -u "$@" | less -FSX
+    git diff --no-index "$@"
 }
 
 # get an RFC on the command line
