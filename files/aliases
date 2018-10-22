@@ -25,6 +25,8 @@ alias sudo='sudo '
 # horizontal rule
 alias hr='printf —%.0s $(seq $COLUMNS)'
 
+alias g='git grep'
+
 # Typos
 alias gti='git'
 alias gut='git'
