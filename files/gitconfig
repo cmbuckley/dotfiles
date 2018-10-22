@@ -20,6 +20,7 @@
     in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
     lp = log -p
     ls = ls-files
+    lu = log HEAD --not @{u} --reverse -p
     ma = merge --abort
     mb = merge-base
     mr = merge --no-ff
@@ -35,7 +36,7 @@
     rp = !sh -c 'git rev-parse ${1-HEAD}' -
     rr = rev-parse --symbolic-full-name --abbrev-ref
     rs = rebase --skip
-    rv = log HEAD --not @{u} --reverse -p
+    rv = remote -v
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
     sl = stash list
     sp = !sh -c 'git stash pop stash@{${1-0}}' -
@@ -45,7 +46,7 @@
     tl = tag -l
     uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
     up = !git fetch --prune && git rebase -p @{u}
-    ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf "{}"' -
+    ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf -- "{}"' -
 
 [apply]
     #whitespace = fix
