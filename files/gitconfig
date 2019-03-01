@@ -6,6 +6,7 @@
     ap = add --patch
     aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply --cached --ignore-whitespace'
     bm = branch --merged
+    bd = !sh -c 'git branch -d $1 && git push origin :refs/heads/$1' -
     br = branch
     ca = commit --amend
     cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
@@ -16,7 +17,7 @@
     dc = diff --cached
     dn = push -u origin HEAD
     du = diff @{u} HEAD
-    fo = fetch --prune
+    fo = fetch --prune --tags
     in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
     lp = log -p
     ls = ls-files
