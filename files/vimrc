@@ -117,8 +117,9 @@ else
     "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
 endif
 
-" Makefiles must use tabs
+" Makefiles must use tabs, Go does by convention
 autocmd FileType make setlocal noexpandtab
+autocmd FileType go setlocal noexpandtab
 
 " Indent yaml files 2 spaces
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
