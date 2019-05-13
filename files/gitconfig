@@ -4,7 +4,7 @@
 
 [alias]
     ap = add --patch
-    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply --cached --ignore-whitespace'
+    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply -p0 --cached --ignore-whitespace'
     bm = branch --merged
     bd = !sh -c 'git branch -d $1 && git push origin :refs/heads/$1' -
     br = branch
