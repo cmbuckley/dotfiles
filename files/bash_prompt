@@ -21,7 +21,7 @@ fi
 
 # custom git PS1
 __git_ps1_custom() {
-    type __git_ps1 >/dev/null 2>&1 && __git_ps1 | gawk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v branch=$BRANCH -v nobranch=$NOBRANCH '
+    type __git_ps1 >/dev/null 2>&1 && __git_ps1 | awk -v untracked=$UNTRACKED -v changed=$CHANGED -v added=$ADDED -v upstream=$UPSTREAM -v branch=$BRANCH -v nobranch=$NOBRANCH '
     function color(col, str) {
         if (str == "") { str = "&" }
         return "\001" col "\002" str "\001\033[0m\002"
@@ -34,12 +34,20 @@ __git_ps1_custom() {
         sub(/<|<?>/, color(upstream))
 
         if ($0 ~ /([<|=>]|\(\()/) {
+            # remove = that means same as upstream
             sub(/=\)/, ")")
         } else if (upstream != "") {
+            # add a ^ to signify no upstream
             sub(/\)/, color(nobranch, "^") ")")
         }
 
-        print gensub(/\(\(([^)]+)\)/, "(" color(nobranch, "\\1"), "g")
+        # remove () around detatched refs (tags/shas)
+        if (match($0, /\(\([^)]+\)/)) {
+            ref = substr($0, RSTART + 2, RLENGTH -3)
+            sub(/\(\([^)]+\)/, "(" color(nobranch, ref))
+        }
+
+        print
     }'
 }
 
