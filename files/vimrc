@@ -119,6 +119,8 @@ else
     "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
 endif
 
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 " Makefiles must use tabs, Go does by convention
 autocmd FileType make setlocal noexpandtab
 autocmd FileType go setlocal noexpandtab
