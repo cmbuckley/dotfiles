@@ -16,3 +16,6 @@
 [submodule "files/vim/bundle/vim-jekyll-syntax"]
 	path = files/vim/bundle/vim-jekyll-syntax
 	url = https://github.com/emanuelen5/vim-jekyll-syntax
+[submodule "files/vim/bundle/typescript-vim"]
+	path = files/vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
