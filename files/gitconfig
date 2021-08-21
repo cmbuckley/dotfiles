@@ -4,8 +4,8 @@
 
 [alias]
     ap = add --patch
-    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply -p0 --cached --ignore-whitespace'
-    bm = branch --merged
+    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply --cached --ignore-whitespace -p0'
+    bm = branch -a --merged
     bd = !sh -c 'git branch -d $1 && git push origin :refs/heads/$1' -
     br = branch
     ca = commit --amend
@@ -73,8 +73,8 @@
 [color "diff"]
     meta = yellow
     frag = magenta
-    old = red bold
-    new = blue bold
+    old = red
+    new = blue
 
 [color "grep"]
     match = red bold
