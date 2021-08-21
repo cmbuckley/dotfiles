@@ -10,3 +10,9 @@
 [submodule "files/vim/bundle/vim-colors-solarized"]
 	path = files/vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "files/vim/bundle/vim-liquid"]
+	path = files/vim/bundle/vim-liquid
+	url = https://github.com/tpope/vim-liquid
+[submodule "files/vim/bundle/vim-jekyll-syntax"]
+	path = files/vim/bundle/vim-jekyll-syntax
+	url = https://github.com/emanuelen5/vim-jekyll-syntax
