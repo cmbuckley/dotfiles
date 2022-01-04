@@ -41,7 +41,7 @@
     sd = !sh -c 'git stash drop stash@{${1-0}}' -
     sl = stash list
     sp = !sh -c 'git stash pop stash@{${1-0}}' -
-    ss = !sh -c 'git stash show stash@{${1-0}} -p --no-prefix' -
+    ss = !bash -c 'git stash show stash@{${1-0}} -p --no-prefix "${@:2}"' -
     st = status
     td = !sh -c 'git tag -d $1 && git push origin :refs/tags/$1' -
     tl = tag -l
