@@ -46,7 +46,7 @@
     td = !sh -c 'git tag -d $1 && git push origin :refs/tags/$1' -
     tl = tag -l
     uk = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4-' -
-    up = !git fetch --prune && git rebase -p @{u}
+    up = !git fetch --prune && git rebase -r @{u}
     ur = !sh -c 'git status -s ${@:-.} | grep -F "\\?\\?" | cut -c4- | xargs -I {} rm -rf -- "{}"' -
 
 [apply]
