@@ -75,6 +75,9 @@ set ignorecase
 set smartcase
 " Highlight dynamically as pattern is typed
 set incsearch
+" Remove hlsearch with Return
+nnoremap <silent> <CR> :nohlsearch<CR>
+
 " Always show status line
 "set laststatus=2
 " Enable mouse in all modes
