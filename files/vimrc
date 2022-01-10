@@ -110,6 +110,8 @@ command W   w
 command Q   q
 command Qa  qa
 command Vsp vsp
+command Vs  vs
+command Set set
 
 if &diff
 else
