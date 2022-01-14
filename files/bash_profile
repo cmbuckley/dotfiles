@@ -7,7 +7,9 @@ done
 unset file
 
 # enable programmable completion features
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+if which brew &> /dev/null && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+    source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+elif [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
 fi
 
