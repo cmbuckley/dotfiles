@@ -88,6 +88,14 @@
     untracked = cyan
     nobranch = red
 
+# highlight backgrounds are 0.25 alpha of the foreground assuming background is #002b36
+# http://marcodiiga.github.io/rgba-to-rgb-conversion
+[color "diff-highlight"]
+    oldnormal = "#dc322f"
+    oldhighlight = "#dc322f #372d34"
+    newnormal = "#268bd2"
+    newhighlight = "#268bd2 #0a435d"
+
 [core]
     editor = vim
     pager = less -FRSX
@@ -112,6 +120,9 @@
 
 [pager]
     status = true
+    log = diff-highlight | less -FRSX
+    show = diff-highlight | less -FRSX
+    diff = diff-highlight | less -FRSX
 
 [push]
     default = upstream
