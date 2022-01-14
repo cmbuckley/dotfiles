@@ -21,6 +21,22 @@ rfc() {
     fi
 }
 
+# Perform a dig querying the name server
+dn() {
+    # naîve PSL equivalent
+    case ${1##*.} in
+        uk)
+            levels=3
+            ;;
+        *)
+            levels=2
+            ;;
+    esac
+    tld=$(rev <<< "$1" | cut -d. -f1-$levels | rev)
+    ns=$(dig @8.8.8.8 +short "$tld" NS | head -1)
+    dig @$ns "$@"
+}
+
 git() {
     case $1 in
         rt ) command cd $(git rev-parse --show-toplevel) ;;

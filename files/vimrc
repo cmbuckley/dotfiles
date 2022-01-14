@@ -132,3 +132,6 @@ autocmd FileType go setlocal noexpandtab
 
 " Indent yaml files 2 spaces
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" Open .air files as ZIP
+autocmd BufReadCmd *.air call zip#Browse(expand("<amatch>"))

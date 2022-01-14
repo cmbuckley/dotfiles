@@ -1,0 +1,4 @@
+#*.json diff=gron
+*.mwb diff=mwbdump
+package-lock.json -diff
+yarn.lock -diff

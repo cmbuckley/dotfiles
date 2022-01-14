@@ -13,6 +13,7 @@
     ci = commit
     co = checkout
     cp = cherry-pick
+    cw = !sh -c 'git clone $1 $2 && git -C "${2-${1##*/}}" config user.email christopher.buckley@work.email' -
     di = diff
     dc = diff --cached
     dn = push -u origin HEAD
@@ -99,6 +100,7 @@
 [core]
     editor = vim
     pager = less -FRSX
+    attributesfile = ~/.gitattributes
     #whitespace = fix,tab-in-indent,tabwidth=4
 
 [diff]
@@ -108,6 +110,9 @@
 
 [diff "mwbdiff"]
     #textconv = mwbdump
+
+[diff "gron"]
+    textconv = gron --no-sort
 
 [fetch]
     prune = true
