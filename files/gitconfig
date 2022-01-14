@@ -4,7 +4,7 @@
 
 [alias]
     ap = add --patch
-    aw = !sh -c 'git diff --ignore-space-at-eol --no-color "$@" | git apply --cached --ignore-whitespace -p0'
+    aw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -p0'
     bm = branch -a --merged
     bd = !sh -c 'git branch -d $1 && git push origin :refs/heads/$1' -
     br = branch
@@ -19,6 +19,7 @@
     du = diff @{u} HEAD
     fo = fetch --prune --tags
     in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
+    lo = log --oneline
     lp = log -p
     ls = ls-files
     lu = log HEAD --not @{u} --reverse -p
@@ -95,9 +96,13 @@
 [diff]
     renames = copy
     noprefix = true
+    wordregex = [^[:space:],.]+|[,.]+
 
 [diff "mwbdiff"]
     #textconv = mwbdump
+
+[fetch]
+    prune = true
 
 [merge]
     tool = vimdiff
