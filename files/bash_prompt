@@ -30,7 +30,7 @@ __git_ps1_custom() {
         sub(/%/,     color(untracked))
         sub(/#/,     color(nobranch))
         sub(/\*/,    color(changed))
-        sub(/\B\+/,  color(added))
+        sub(/\+/,    color(added))
         sub(/<|<?>/, color(upstream))
 
         if ($0 ~ /([<|=>]|\(\()/) {
