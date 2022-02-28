@@ -11,6 +11,7 @@
     ca = commit --amend
     cb = rev-parse --symbolic-full-name --abbrev-ref HEAD
     ci = commit
+    cl = clone
     co = checkout
     cp = cherry-pick
     di = diff
