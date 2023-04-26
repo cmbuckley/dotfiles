@@ -113,6 +113,9 @@
 [fetch]
     prune = true
 
+[init]
+	defaultBranch = main
+
 [merge]
     tool = vimdiff
 
