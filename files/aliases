@@ -2,9 +2,14 @@
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color"
+    colorflag="--color=auto"
 else # OS X `ls`
     colorflag="-G"
+fi
+
+# unzip does not exist on Synology
+if ! command -v unzip &> /dev/null; then
+    alias unzip="7z x"
 fi
 
 alias ls="ls ${colorflag}"
