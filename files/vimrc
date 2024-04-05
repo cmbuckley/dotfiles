@@ -126,6 +126,7 @@ else
 endif
 
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufFilePre,BufRead *.tf set filetype=tf
 
 " Makefiles must use tabs, Go does by convention
 autocmd FileType make setlocal noexpandtab
