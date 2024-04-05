@@ -1,21 +1,21 @@
 [submodule "files/vim/bundle/vim-pathogen"]
-	path = files/vim/bundle/vim-pathogen
+	path = dirs/vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
 [submodule "files/vim/bundle/dwm.vim"]
-	path = files/vim/bundle/dwm.vim
+	path = dirs/vim/bundle/dwm.vim
 	url = https://github.com/spolu/dwm.vim
 [submodule "files/vim/bundle/vim-fugitive"]
-	path = files/vim/bundle/vim-fugitive
+	path = dirs/vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
 [submodule "files/vim/bundle/vim-colors-solarized"]
-	path = files/vim/bundle/vim-colors-solarized
+	path = dirs/vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "files/vim/bundle/vim-liquid"]
-	path = files/vim/bundle/vim-liquid
+	path = dirs/vim/bundle/vim-liquid
 	url = https://github.com/tpope/vim-liquid
 [submodule "files/vim/bundle/vim-jekyll-syntax"]
-	path = files/vim/bundle/vim-jekyll-syntax
+	path = dirs/vim/bundle/vim-jekyll-syntax
 	url = https://github.com/emanuelen5/vim-jekyll-syntax
 [submodule "files/vim/bundle/typescript-vim"]
-	path = files/vim/bundle/typescript-vim
+	path = dirs/vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git

@@ -7,11 +7,22 @@ PRG="$(basename "$0")"
 function setup() {
     CWD="$(pwd -P)"
 
-    for FILE in $(find "$CWD/files" -mindepth 1 -maxdepth 1); do
-        TARGET="$HOME/.${FILE##*/}"
+    for DIR in $(find "$CWD/files" -type d -mindepth 1 | sort); do
+        mkdir -p "$HOME/.${DIR#$CWD/files/}"
+    done
+
+    for FILE in $(find "$CWD/files" -type f -mindepth 1); do
+        TARGET="$HOME/.${FILE#$CWD/files/}"
 
         [ -e "$TARGET" -a ! -h "$TARGET" ] && mv "$TARGET" "$TARGET.bak"
         ln -nfs "$FILE" "$TARGET"
+    done
+
+    for DIR in $(find "$CWD/dirs" -type d -mindepth 1 -maxdepth 1); do
+        TARGET="$HOME/.${DIR##*/}"
+
+        [ -e "$TARGET" -a ! -h "$TARGET" ] && mv "$TARGET" "$TARGET.bak"
+        ln -nfs "$DIR" "$TARGET"
     done
 }
 
