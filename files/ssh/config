@@ -1,0 +1,8 @@
+Include config.local
+
+Host vps
+    Hostname vps.cmbuckley.co.uk
+
+Host gh
+    Hostname github.com
+    User git
