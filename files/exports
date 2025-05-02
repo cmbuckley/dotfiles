@@ -2,6 +2,7 @@
 
 # LS_COLORS
 type dircolors >/dev/null 2>&1 && eval $(dircolors)
+LS_COLORS+=':di=34:ln=35:mi=31:so=32:pi=33:ex=01;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=34:ow=34'
 
 # default language
 export LANG="en_GB.UTF-8"
@@ -37,3 +38,6 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date"
 
 # Hide editor on git merges
 export GIT_MERGE_AUTOEDIT="no"
+
+# Testing
+export TERM="xterm"

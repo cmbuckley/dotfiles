@@ -122,7 +122,7 @@ else
     " Save actions
     autocmd BufWritePre * :%s/\s\+$//e
     autocmd BufWritePre * :%s/\r//e
-    "autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
+    autocmd BufWritePre *.awk,*.css,*.csv,*.ini,*.js,*.json,*.php,*.phtml,*.sh,*.svg,*.txt,*.xml,*.xsd,*.yaml :%s/	/    /ge
 endif
 
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown

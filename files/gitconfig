@@ -14,12 +14,13 @@
     cl = clone
     co = checkout
     cp = cherry-pick
+    cs = !sh -c 'git clone sfa:scottishfriendlyassurance/$1' -
     di = diff
     dc = diff --cached
     dn = push -u origin HEAD
     du = diff @{u} HEAD
     fo = fetch --prune --tags
-    in = !git init && touch .gitignore && git add .gitignore && git commit -m 'Initial commit'
+    in = !git init && git commit -m 'Initial commit' --allow-empty
     lo = log --oneline
     lp = log -p
     ls = ls-files
@@ -131,7 +132,13 @@
 [push]
     default = upstream
 
+[rebase]
+    autoSquash = true
+
 [tig]
     tab-size = 4
     commit-order = topo
     vertical-split = no
+
+[includeIf "gitdir:scottishfriendlyassurance/"]
+  path = git/scottishfriendlyassurance/.gitconfig

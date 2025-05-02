@@ -13,7 +13,7 @@ di(){
 
 # get an RFC on the command line
 rfc() {
-    OUT=`curl -s -w "%{http_code}\\n" "http://tools.ietf.org/rfc/rfc$1.txt"`
+    OUT=`curl -s -w "%{http_code}\\n" "https://www.rfc-editor.org/rfc/rfc$1.txt"`
     if [ "200" -eq `echo "$OUT" | tail -1` ]; then
         echo "$OUT" | head -n -1 | grep -v  | less
     else
