@@ -7,7 +7,7 @@ BRANCH=$(git config --get-color color.status.branch)
 NOBRANCH=$(git config --get-color color.status.nobranch)
 UPSTREAM=$NOBRANCH
 
-if [ "$(git config --bool bash.showUpstream)" == "false" ]; then
+if [[ "$(git config --bool bash.showUpstream)" == "false" ]]; then
     UPSTREAM=
 fi
 
