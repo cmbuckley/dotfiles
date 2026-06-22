@@ -45,6 +45,7 @@ endif
 " Color scheme
 set background=dark
 colorscheme solarized
+hi Error ctermbg=1 ctermfg=0
 
 " Navigate between soft lines
 map <silent> <Up> gk
@@ -79,6 +80,8 @@ set incsearch
 " Remove hlsearch with Return
 nnoremap <silent> <CR> :nohlsearch<CR>
 
+" Display ruler
+set ruler
 " Always show status line
 "set laststatus=2
 " Enable mouse in all modes
