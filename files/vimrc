@@ -40,6 +40,9 @@ if &diff
 else
     " Enable syntax highlighting
     syntax on
+
+    " Allow :! to load .bashrc
+    set shellcmdflag=-ic
 endif
 
 " Color scheme
@@ -105,8 +108,6 @@ set nobackup
 set nowb
 set noswapfile
 set autoread
-" Allow :! to load .bashrc
-set shellcmdflag=-ic
 
 " Commands
 command Sw  :execute ':silent w !sudo tee % > /dev/null' | :edit!

@@ -119,6 +119,10 @@
 [mergetool]
 	keepBackup = false
 
+[mergetool "vimdiff"]
+    # force vim -d, so &diff works in .vimrc
+    cmd = "vim -d -c '4wincmd w | wincmd J | wincmd =' $LOCAL $BASE $REMOTE $MERGED"
+
 [pager]
     status = true
     log = diff-highlight | less -FRSX
