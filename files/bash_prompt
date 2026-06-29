@@ -36,6 +36,7 @@ __git_ps1_custom() {
         if ($0 ~ /([<|=>]|\(\()/) {
             # remove = that means same as upstream
             sub(/=\)/, ")")
+            sub(/=\|/, "|")
         } else if (upstream != "") {
             # add a ^ to signify no upstream
             sub(/\)/, color(nobranch, "^") ")")
